@@ -33,7 +33,12 @@ for quick consumption by other notebooks. It creates:
 #### Create summary tables
 
 `Creating Per-Visit Tables.ipynb` uses the var categories and labels to create tables showing how many of each kind of
-variable was collected during each visit. Output in wikitables for now. 
+variable was collected during each visit. Output in wikitables for now.
+
+#### Group variables by labels
+For each test and metric gathered in the OAI research, many variables were collected.  Typically the labels of these
+variables start with the same text. `Looking at variable groups.ipynb` bin variables together by shared label 
+prefixes.
 
 ### Concat data and convert to dataframes
 
