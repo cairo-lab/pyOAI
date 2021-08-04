@@ -46,3 +46,8 @@ Breaking out the data into some 150 data files is a bit cluttered. `Create OAI D
 stab at concatenation and dataframe creation. This will be a work in progress. As the details of different datasets
 is explored and more logical dataframe schemas become evident from actual usage, dataframe creation will move to
 `Create Data Specific Dataframes.ipynb`. It is a more attentive attempt to create concatenated dataframes. 
+
+#### Collect PROs and Functional Outcomes
+
+`Collecting Functional Outcomes.ipynb` is a notebook which collects the subset of PRO and functional outcomes
+variables and labels whether they are a question in a set, or a score from a set of questions.
