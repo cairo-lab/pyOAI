@@ -17,6 +17,9 @@ author used (and sometimes why).
 If you decide to store your data elsewhere (esp. images), consider creating a softlink from the given
 directory to the actual location. This may be faster than searching for where to modify the scripts.
 
+Note: Notebooks were written presuming they will be run from the notebook directory. All paths are relative from that 
+directory.
+
 ## Where to start
 While the SAS parsing is reasonably quick, it is still faster and more space efficient to convert the data into
 Pandas dataframes and save them as pickle files. Only a few notebooks must be run before others, and they are noted 
