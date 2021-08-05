@@ -1,14 +1,21 @@
 # OAI
 
 This repo is a collection of scripts for navigating and making sense of the Osteoarthritis Initiative dataset. With
-over 9,000 variables tracked for almost 5,000 patients, this project is a medical goldmine.  It also less than trivial
-to get a sense of where to start.  The scripts in this repo are an attempt to help.
+over 9,000 variables tracked for almost 5,000 patients, this project is a medical goldmine.  It is also less than
+trivial to get a sense of where to start.  The scripts in this repo are an attempt to help.
 
 ## Setting up to use this code
 
 Obviously, you can modify the code to whatever setup you prefer, but it can be helpful to know what setup the original
-author used (and sometimes why).
+author used (and sometimes why). 
 
+* Download: `General Information.zip` and `OAICompleteData_SAS.zip`
+* Unzip `General Information.zip` in the `data/pdfs/` directory
+* Unzip `OAICompleteData_SAS.zip` in `data/structured_data`
+* Move all PDF files from `data/structured_data` to `data/pdfs/Data Descriptions/`
+
+If you decide to store your data elsewhere (esp. images), consider creating a softlink from the given
+directory to the actual location. This may be faster than searching for where to modify the scripts.
 
 ## Where to start
 While the SAS parsing is reasonably quick, it is still faster and more space efficient to convert the data into

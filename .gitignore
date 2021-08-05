@@ -1,4 +1,11 @@
-data/
 .idea/
+*.pdf
+*.pptx
+*.sas7bdat
+*.sas7bcat
+*.xpt
 *.pkl
+*.zip
+*.sf3
+*.doc
 *-checkpoint.ipynb
