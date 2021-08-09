@@ -29,7 +29,8 @@ below (as well as in the notebooks themselves).
 ### Survey the data
 Once data files are in place, the next natural step is to sort the 9,000+ variables into bins that make sense. To some
 degree the folks who publish that data already have. Unfortunately, the categorization they did was only recorded
-in PDF files. 
+in PDF files. Note that `Exploring Available SAS Metadata.ipynb` is merely exploring issues related to importing the
+data from SAS files into Pandas.
 
 #### Parse out categories and sub-categories
 
