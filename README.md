@@ -68,8 +68,3 @@ Breaking out the data into some 145 data files is a bit cluttered. `Convert SAS 
 stab at concatenation and dataframe creation. This is a work in progress. As the details of different datasets
 is explored and more logical dataframe schemas become evident from actual usage, customizations will be added.
 For now, the notebook can convert all but 5 files. Next round improvements are listed in the TODO section.
-
-#### Collect PROs and Functional Outcomes
-
-`Collecting Functional Outcomes.ipynb` is a notebook which collects the subset of PRO and functional outcomes
-variables and labels whether they are a question in a set, or a score from a set of questions.
