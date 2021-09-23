@@ -1,8 +1,19 @@
 # OAI
 
 This repo is a collection of scripts for navigating and making sense of the Osteoarthritis Initiative dataset. With
-over 9,000 variables tracked for almost 5,000 patients, this project is a medical goldmine.  It is also less than
-trivial to get a sense of where to start.  The scripts in this repo are an attempt to help.
+over 11,000 variables tracked for almost 5,000 patients, this project is a medical goldmine.  It is also less than
+trivial to get a sense of where to start.  The scripts in this repo are an attempt to help by making public the
+initial code that any researchers would need to write to use the data outside of SAS.
+
+The only request in using this library is that you mention it in the acknowledgements when you publish. Maintaining
+this code takes time from research work. Doing so is worth it if more people benefit and contribute. 
+
+__R users__ It should be straight-forward to save the dataframes to Feather files 
+( https://blog.rstudio.com/2016/03/29/feather/ ) and import those to R.
+```
+import pyarrow.feather as feather
+feather.write_feather(df, '/path/to/file')
+```
 
 ## Setting up to use this code
 
@@ -47,16 +58,16 @@ for quick consumption by other notebooks. It creates:
 variable was collected during each visit. Output in wikitables for now.
 
 #### Group variables by labels
-For each test and metric gathered in the OAI research, many variables were collected.  Typically the labels of these
+For each test and metric gathered in the OAI research, many variables were collected.  Typically, the labels of these
 variables start with the same text. `Looking at variable groups.ipynb` bin variables together by shared label 
 prefixes.
 
 ### Concat data and convert to dataframes
 
-Breaking out the data into some 150 data files is a bit cluttered. `Create OAI Dataframes.ipynb` was a coarse
-stab at concatenation and dataframe creation. This will be a work in progress. As the details of different datasets
-is explored and more logical dataframe schemas become evident from actual usage, dataframe creation will move to
-`Create Data Specific Dataframes.ipynb`. It is a more attentive attempt to create concatenated dataframes. 
+Breaking out the data into some 145 data files is a bit cluttered. `Convert SAS to Dataframes.ipynb` is a
+stab at concatenation and dataframe creation. This is a work in progress. As the details of different datasets
+is explored and more logical dataframe schemas become evident from actual usage, customizations will be added.
+For now, the notebook can convert all but 5 files. Next round improvements are listed in the TODO section.
 
 #### Collect PROs and Functional Outcomes
 
