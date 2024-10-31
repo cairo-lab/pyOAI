@@ -8,13 +8,6 @@ initial code that any researchers would need to write to use the data outside of
 The only request in using this library is that you mention it in the acknowledgements when you publish. Maintaining
 this code takes time from research work. Doing so is worth it if more people benefit and contribute. 
 
-__R users__ It should be straight-forward to save the dataframes to Feather files 
-( https://blog.rstudio.com/2016/03/29/feather/ ) and import those to R.
-```
-import pyarrow.feather as feather
-feather.write_feather(df, '/path/to/file')
-```
-
 ## Setting up to use this code
 
 Obviously, you can modify the code to whatever setup you prefer, but it can be helpful to know what setup the original
