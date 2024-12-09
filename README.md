@@ -1,9 +1,10 @@
 # pyOAI
 
-This repo is a collection of scripts for navigating and making sense of the Osteoarthritis Initiative dataset. With
-over 11,000 variables tracked for almost 5,000 patients, this project is a medical goldmine.  It is also less than
-trivial to get a sense of where to start.  The scripts in this repo are an attempt to help by making public the
-initial code that any researchers would need to write to use the data outside of SAS.
+This repo is a collection of scripts and a set of convenience functions for navigating and making sense of the
+Osteoarthritis Initiative dataset. With over 11,000 variables tracked for almost 5,000 patients, this project
+is a medical goldmine. It is also less than trivial to get a sense of where to start. The scripts in this repo
+are an attempt to help by making public the initial code that any researchers would need to write to use the 
+data outside of SAS.
 
 The only request in using this library is that you mention it in the acknowledgements when you publish. Maintaining
 this code takes time from research work. Doing so is worth it if more people benefit and contribute. 
@@ -21,13 +22,13 @@ author used (and sometimes why).
 If you decide to store your data elsewhere (esp. images), consider creating a softlink from the given
 directory to the actual location. This may be faster than searching for where to modify the scripts.
 
-Note: Notebooks were written presuming they will be run from the notebook directory. All paths are relative from that 
+**Note:** Notebooks were written presuming they will be run from the notebook directory. All paths are relative from that 
 directory.
 
 ## Where to start
 While the SAS parsing is reasonably quick, it is still faster and more space efficient to convert the data into
-Pandas dataframes and save them as pickle files. Only a few notebooks must be run before others, and they are noted 
-below (as well as in the notebooks themselves). 
+Pandas dataframes and save them in a more Python friendly format. Only a few notebooks must be run before others,
+and they are noted below (as well as in the notebooks themselves). 
 
 
 ### Survey the data
@@ -61,3 +62,10 @@ Breaking out the data into some 145 data files is a bit cluttered. `Convert SAS 
 stab at concatenation and dataframe creation. This is a work in progress. As the details of different datasets
 is explored and more logical dataframe schemas become evident from actual usage, customizations will be added.
 For now, the notebook can convert all but 5 files. Next round improvements are listed in the TODO section.
+
+## Documenation
+
+For the full explanation of this libraries features, please visit the [Wiki](https://github.com/cairo-lab/pyOAI/wiki).
+
+# Credit
+This work is another product of the [CAIRO Lab](https://ciaro-lab.org).
