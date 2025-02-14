@@ -1,7 +1,7 @@
 # pyOAI
 
 This repo is a collection of scripts and a set of convenience functions for navigating and making sense of the
-Osteoarthritis Initiative dataset. With over 11,000 variables tracked for almost 5,000 patients, this project
+Osteoarthritis Initiative dataset (download here [NDA](https://nda.nih.gov/oai)). With over 11,000 variables tracked for almost 5,000 patients, this project
 is a medical goldmine. It is also less than trivial to get a sense of where to start. The scripts in this repo
 are an attempt to help by making public the initial code that any researchers would need to write to use the 
 data outside of SAS.
