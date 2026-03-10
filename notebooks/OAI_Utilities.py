@@ -11,7 +11,7 @@ visit_prefixes_year = ['V00', 'V01', 'V03', 'V05', 'V06', 'V07', 'V08', 'V09', '
 visit_cats_year = ['1: 12-month', '3: 24-month', '5: 36-month', '6: 48-month', '7: 60-month', '8: 72-month', '9: 84-month', '10: 96-month', '11: 108-month']
 
 visit_prefix_to_month = {'V00':'0', 'V01':'12', 'V02':'18', 'V03':'24', 'V04':'30', 'V05':'36', 'V06':'48', 'V07':'60', 'V08':'72', 'V09':'84', 'V10':'96', 'V11':'108'}
-visit_prefix_to_year = {'P01':-1, 'V00':0, 'V01':1, 'V02': 1.5, 'V03':2, 'V04': 2.5, 'V05':3, 'V06':4, 'V07':5, 'V08':6, 'V09':7, 'V10':8, 'V11':9}
+visit_prefix_to_year = {'P02': -2, 'P01':-1, 'V00':0, 'V01':1, 'V02': 1.5, 'V03':2, 'V04': 2.5, 'V05':3, 'V06':4, 'V07':5, 'V08':6, 'V09':7, 'V10':8, 'V11':9}
 visit_cat_to_prefix = {'1: 12-month' : 'V01', '3: 24-month': 'V03', '5: 36-month': 'V05', '6: 48-month': 'V06', '7: 60-month': 'V07', '8: 72-month': 'V08', '9: 84-month': 'V09', '10: 96-month': 'V10', '11: 108-month': 'V11'}
 visit_cat_to_year = {'0: Baseline': 0, '1: 12-month' : 1, '2: 18-month' : 1.5, '3: 24-month': 2, '4: 30-month' : 2.5, '5: 36-month': 3, '6: 48-month': 4, '7: 60-month': 5, '8: 72-month': 6, '9: 84-month': 7, '10: 96-month': 8, '11: 108-month': 9, '12: 120-month': 10}
 
@@ -213,7 +213,7 @@ def dataframe_to_image(df, filename):
 
 
 # Write a pandas dataframe into a MS Word docx file as a table, complete with Jupyter styling        
-def dataframe_to_word(data, filename, decimal_places = 3, font='Arial', font_size = 8):
+def dataframe_to_word(data, filename, decimal_places = 3, type_dict=None, font='Arial', font_size = 8):
     from docx import Document
     from docx.enum.text import WD_ALIGN_PARAGRAPH
     from docx.enum.table import WD_ALIGN_VERTICAL
@@ -254,6 +254,11 @@ def dataframe_to_word(data, filename, decimal_places = 3, font='Arial', font_siz
     table.style = 'Light Shading' # This style seems to keep the spacing tighter, but then I need to fix the shading below
     table.style.font.name = font
     table.style.font.size = font_size
+
+    # Set column types
+    if type_dict:
+        for col, col_type in type_dict.items():
+            data[col] = data[col].astype(col_type)
                  
     # Column headers
     for level in range(col_lvls, ):
@@ -299,11 +304,20 @@ def dataframe_to_word(data, filename, decimal_places = 3, font='Arial', font_siz
     for i, column in enumerate(data):
         alignment = WD_ALIGN_PARAGRAPH.CENTER
         format_string = '{}'
+        if isinstance(decimal_places, dict):
+            if column in decimal_places:
+                precision = str(decimal_places[column])
+            else:
+                precision = str(3)
+        else:
+            precision = str(decimal_places)
+
         if pd.api.types.is_integer_dtype(data[column]):
             alignment = WD_ALIGN_PARAGRAPH.RIGHT
             format_string = '{:,}'
         elif pd.api.types.is_float_dtype(data[column]):
-            format_string = '{:,.' + str(decimal_places) + 'f}'            
+            format_string = '{:,.' + str(precision) + 'f}'
+
         for row in range(data.shape[0]) :
             cell = table.cell(row + col_lvls, i + idx_lvls)
             paragraph = cell.paragraphs[0]
@@ -466,7 +480,7 @@ def write_parquet(data, filename, compression=None, convert_idx_names=True, auto
 def read_parquet(filename, compress_cols=True, threshold=0.10):
     assert any([ext == '.parquet' for ext in Path(filename).suffixes]), 'File lacks .parquet extension'
     # https://pandas.pydata.org/docs/reference/api/pandas.read_parquet.html
-    df = pd.read_parquet(filename, engine='pyarrow')
+    df = pd.read_parquet(filename, engine='pyarrow').sort_index()
     
     # Convert columns with mostly the same values to categoricals. Saves memory.
     if compress_cols:
@@ -486,7 +500,7 @@ def read_parquet(filename, compress_cols=True, threshold=0.10):
             # What percent of columns are a unique value?
             if (len(possible_cats) / row_cnt) <= threshold:
                 if any([isinstance(cat, str) for cat in possible_cats]):
-                    df[col] = df[col].astype(str).replace('nan', np.NaN).astype('category')
+                    df[col] = df[col].astype(str).replace('nan', np.nan).astype('category')
                 else:
                     df[col] = df[col].astype('category')
     df.sort_index()
